@@ -986,7 +986,7 @@ function fCAPI(){
     R10_C5.val(parseInt(R11_C5.val()1 + R12_C5.val()1 + R13_C5.val()1 + R14_C5.val()1 + R15_C5.val()1 + R16_C5.val()1 + R17_C5.val()1 + R18_C5.val()1+ 
                    R19_C5.val()1 + R20_C5.val()1 + R21_C5.val()1 + R22_C5.val()1 + R23_C5.val()1 + R24_C5.val()1 + R25_C5.val()1 + R26_C5.val()1));
 
-                   
+
     if(R10_C4.val() !=   R10_C5.val() != ){
         R10_C6.val(Math.round(R10_C5.val()R10_C4.val()Math.pow(10,2))Math.pow(10,2));}
     if((R10_C4.val() ==  && R10_C5.val() == )  (R10_C4.val() == 0 && R10_C5.val() == 0)){
@@ -1672,10 +1672,16 @@ if(R69_C1.val() !=   R69_C2.val() != ){
 -------------------------------Rind 70------------------------------------------------------
     R70_C1.val(parseInt(R71_C1.val()1 + R72_C1.val()1));
     R70_C2.val(parseInt(R71_C2.val()1 + R72_C2.val()1));
+
+
     if(R70_C1.val() !=   R70_C2.val() != ){
         R70_C3.val(Math.round(R70_C2.val()R70_C1.val()Math.pow(10,2))Math.pow(10,2));} 
+
+
     if((R70_C1.val() ==  && R70_C2.val() == )  (R70_C1.val() == 0 && R70_C2.val() == 0)){
         R70_C3.val();R70_C2.val();R70_C1.val();} 
+
+        
     R70_C4.val(parseInt(R71_C4.val()1 + R72_C4.val()1));
     R70_C5.val(parseInt(R71_C5.val()1 + R72_C5.val()1));
     if(R70_C4.val() !=   R70_C5.val() != ){
