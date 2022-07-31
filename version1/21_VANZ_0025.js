@@ -25,12 +25,45 @@
 webform.validators.vanz21 = function (v, allowOverpass) {
     var values = Drupal.settings.mywebform.values;
 
+    
 
+    // Start 26-024
+    for (var i = 10; i <= 136; i++) {
+         {
+            var col1 = Number(values["CAP1_R" + (i <= 136 ? ( + i) : i) + "_C1"]);
+            var col4 = Number(values["CAP1_R" + (i <= 136 ? ( + i) : i) + "_C4"]);
 
+            if (col1 < col4) {
+                webform.errors.push({
+                    'fieldName': 'CAP1_R' + (i <= 136 ? ( + i) : i) + '_C1',
+                    'weight': 1,
+                    'msg': Drupal.t('Cod eroare: 26-024 Cap.I, COL4 <= COL1 pe  rindurile. @row', { '@row':  i })
+                });
+            }
+        }
+    }
 
- 
+ //End 26-024
 
     
+
+    // Start 26-004
+    for (var i = 10; i <= 136; i++) {
+        {
+            var col1 = Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C1"]);
+            var col2 = Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C2"]);
+
+            if ((col1 > 0 && col2 == 0)) {
+                webform.errors.push({
+                    'fieldName': 'CAP1_R' + (i <= 136 ? (+ i) : i) + '_C2',
+                    'weight': 2,
+                    'msg': Drupal.t('Cod eroare: 26-004 Cap.I, daca exista COL1 atunci exista COL2  @row', { '@row': i })
+                });
+            }
+        }
+    }
+
+ //End 26-004
 
 
 
