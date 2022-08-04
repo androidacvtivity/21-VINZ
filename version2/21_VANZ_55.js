@@ -25,6 +25,33 @@
 webform.validators.vanz21 = function (v, allowOverpass) {
     var values = Drupal.settings.mywebform.values;
 
+
+
+    // Start 26-002
+    for (var i = 10; i <= 136; i++) {
+        {
+            var col1 = Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C1"]);
+            var col2 = Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C2"]);
+            var col3 = toFloat(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C3"]);
+            var col2DevCol1 = (Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C2"])  / Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C1"])) 
+            if (col2DevCol1 !=  col3 ) {
+                webform.errors.push({
+                    'fieldName': 'CAP1_R' + (i <= 136 ? (+ i) : i) + '_C3',
+                    'weight': 1,
+                    'msg': Drupal.t('Cod eroare: 26-003 Cap.I,  [@col3] <- COL3 = COL2/COL1 -> [@col2DevCol1]  pe rândul   @row', { "@col3": col3,  "@col2DevCol1": col2DevCol1, '@row': i })
+                });
+            }
+        }
+    }
+
+ //End 26-002
+
+
+//--------------------------------------
+
+
+
+
     // Start 26-024
     for (var i = 111; i <= 137; i++) {
         {
@@ -171,9 +198,8 @@ webform.validators.vanz21 = function (v, allowOverpass) {
 
     for (var i = 1; i <= 5; i++) {
         var R46_C  = Number(values["CAP1_R46_C" + i]);
-        var R47_48 = Number(values["CAP1_R47_C" + i])
-            
-            .plus(values["CAP1_R48_C" + i] );
+        var R47_48 = Decimal(values["CAP1_R47_C" + i] || 0)
+            .plus(values["CAP1_R48_C" + i] || 0);
         if (R46_C < R47_48) {
             webform.errors.push({
                 'fieldName': 'CAP1_R46_C' + i,

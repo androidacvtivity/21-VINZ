@@ -25,6 +25,33 @@
 webform.validators.vanz21 = function (v, allowOverpass) {
     var values = Drupal.settings.mywebform.values;
 
+
+
+    // Start 26-002
+    for (var i = 10; i <= 136; i++) {
+        {
+            var col1 = Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C1"]);
+            var col2 = Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C2"]);
+            var col3 = toFloat(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C3"]);
+
+            if ((col2 / col1) !=   col3 ) {
+                webform.errors.push({
+                    'fieldName': 'CAP1_R' + (i <= 136 ? (+ i) : i) + '_C3',
+                    'weight': 1,
+                    'msg': Drupal.t('Cod eroare: 26-003 Cap.I, COL3 = COL2/COL1 pe  @row', { '@row': i })
+                });
+            }
+        }
+    }
+
+ //End 26-002
+
+
+//--------------------------------------
+
+
+
+
     // Start 26-024
     for (var i = 111; i <= 137; i++) {
         {
@@ -152,7 +179,7 @@ webform.validators.vanz21 = function (v, allowOverpass) {
             if ((col4 > 0 && col5 == 0)) {
                 webform.errors.push({
                     'fieldName': 'CAP2_R' + (i <= 137 ? (+ i) : i) + '_C4',
-                    'weight': 3,
+                    'weight': 6,
                     'msg': Drupal.t('Cod eroare: 26-023 Cap.II, daca exista COL4 atunci exista COL5 pe răndul  @row', { '@row': i })
                 });
             }
@@ -160,13 +187,30 @@ webform.validators.vanz21 = function (v, allowOverpass) {
             else if ((col5 > 0 && col4 == 0)) {
                 webform.errors.push({
                     'fieldName': 'CAP2_R' + (i <= 137 ? (+ i) : i) + '_C5',
-                    'weight': 3,
+                    'weight': 6,
                     'msg': Drupal.t('Cod eroare: 26-023 Cap.II, daca exista COL5 atunci exista COL4 pe răndul  @row', { '@row': i })
                 });
             }
         }
     }
 // End 26-023
+// Start 26 - 007
+
+    for (var i = 1; i <= 5; i++) {
+        var R46_C  = Number(values["CAP1_R46_C" + i]);
+        var R47_48 = Decimal(values["CAP1_R47_C" + i] || 0)
+            .plus(values["CAP1_R48_C" + i] || 0);
+        if (R46_C < R47_48) {
+            webform.errors.push({
+                'fieldName': 'CAP1_R46_C' + i,
+                'weight': 7,
+                'msg': Drupal.t('Cod eroare: 26-007. Cap.I, Rind. 46 >= Rind.47+Rind.48.@col', { '@col': i })
+            });
+        }
+    }
+
+    // End 26 - 007
+
     //Sort warnings & errors
     webform.warnings.sort(function (a, b) {
         return sort_errors_warinings(a, b);

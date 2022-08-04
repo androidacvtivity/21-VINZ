@@ -1,7 +1,7 @@
 (function ($) {
 
     var activity_options_default_value = '';
-
+  
 
     Drupal.behaviors.vanz21 = {
         attach: function (context, settings) {
@@ -25,6 +25,60 @@
 webform.validators.vanz21 = function (v, allowOverpass) {
     var values = Drupal.settings.mywebform.values;
 
+    function validate_autofields(item) {
+        var values = Drupal.settings.mywebform.values;
+
+        var field = Drupal.settings.mywebform.fields[item.rezField];
+        var decimal_length = 0;
+        switch (field.type) {
+            case 'float':
+                decimal_length = field.decimal_length;
+                break
+            case 'money':
+                decimal_length = 2;
+                break;
+        }
+
+        if (formatNumber(item.callback(), decimal_length) != formatNumber(values[item.rezField], decimal_length)) {
+            var msg = item.text;
+            if (typeof msg == 'function') {
+                msg = msg();
+            }
+
+            webform.errors.push({
+                'fieldName': item.rezField,
+                'index': 0,
+                'weight': parseInt(item.err),
+                'msg': concatMessage('67-' + item.err, '', msg)
+            });
+        }
+    }
+
+    // Start 26-002
+    for (var i = 10; i <= 136; i++) {
+        {
+            var col1 = Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C1"]);
+            var col2 = Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C2"]);
+            var col3 = toFloat(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C3"]);
+            var col2DevCol1 = (Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C2"])  / Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C1"])) 
+            if (col2DevCol1 !=  col3 ) {
+                webform.errors.push({
+                    'fieldName': 'CAP1_R' + (i <= 136 ? (+ i) : i) + '_C3',
+                    'weight': 1,
+                    'msg': Drupal.t('Cod eroare: 26-003 Cap.I,  [@col3] <- COL3 = COL2/COL1 -> [@col2DevCol1]  pe rândul   @row', { "@col3": col3,  "@col2DevCol1": col2DevCol1, '@row': i })
+                });
+            }
+        }
+    }
+
+ //End 26-002
+
+
+//--------------------------------------
+
+
+
+
     // Start 26-024
     for (var i = 111; i <= 137; i++) {
         {
@@ -41,29 +95,29 @@ webform.validators.vanz21 = function (v, allowOverpass) {
         }
     }
 
-    //End 26-024
+ //End 26-024
 
 
 
     // Start 26-024
     for (var i = 10; i <= 136; i++) {
-        {
-            var col1 = Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C1"]);
-            var col4 = Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C4"]);
+         {
+            var col1 = Number(values["CAP1_R" + (i <= 136 ? ( + i) : i) + "_C1"]);
+            var col4 = Number(values["CAP1_R" + (i <= 136 ? ( + i) : i) + "_C4"]);
 
             if (col1 < col4) {
                 webform.errors.push({
-                    'fieldName': 'CAP1_R' + (i <= 136 ? (+ i) : i) + '_C1',
+                    'fieldName': 'CAP1_R' + (i <= 136 ? ( + i) : i) + '_C1',
                     'weight': 1,
-                    'msg': Drupal.t('Cod eroare: 26-024 Cap.I, COL4 <= COL1 pe  rindurile. @row', { '@row': i })
+                    'msg': Drupal.t('Cod eroare: 26-024 Cap.I, COL4 <= COL1 pe  rindurile. @row', { '@row':  i })
                 });
             }
         }
     }
 
-    //End 26-024
+ //End 26-024
 
-
+    
 
     // Start 26-004
     for (var i = 10; i <= 136; i++) {
@@ -89,7 +143,7 @@ webform.validators.vanz21 = function (v, allowOverpass) {
         }
     }
 
-    //End 26-004
+ //End 26-004
 
     // Start 26-005
     for (var i = 10; i <= 136; i++) {
@@ -115,7 +169,7 @@ webform.validators.vanz21 = function (v, allowOverpass) {
         }
     }
 
-    //End 26-005
+ //End 26-005
 
 
     // Start 26-004
@@ -141,7 +195,7 @@ webform.validators.vanz21 = function (v, allowOverpass) {
             }
         }
     }
-    // End  26-004
+  // End  26-004
 
     // Start 26-023
     for (var i = 111; i <= 137; i++) {
@@ -166,11 +220,11 @@ webform.validators.vanz21 = function (v, allowOverpass) {
             }
         }
     }
-    // End 26-023
-    // Start 26 - 007
+// End 26-023
+// Start 26 - 007
 
     for (var i = 1; i <= 5; i++) {
-        var R46_C = Number(values["CAP1_R46_C" + i]);
+        var R46_C  = Number(values["CAP1_R46_C" + i]);
         var R47_48 = Decimal(values["CAP1_R47_C" + i] || 0)
             .plus(values["CAP1_R48_C" + i] || 0);
         if (R46_C < R47_48) {
