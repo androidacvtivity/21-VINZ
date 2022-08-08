@@ -25,27 +25,101 @@
 webform.validators.vanz21 = function (v, allowOverpass) {
     var values = Drupal.settings.mywebform.values;
 
+    function validate_autofields(item) {
+        var values = Drupal.settings.mywebform.values;
 
+        var field = Drupal.settings.mywebform.fields[item.rezField];
+        var decimal_length = 0;
+        switch (field.type) {
+            case 'float':
+                decimal_length = field.decimal_length;
+                break
+            case 'money':
+                decimal_length = 2;
+                break;
+        }
+
+        if (formatNumber(item.callback(), decimal_length) != formatNumber(values[item.rezField], decimal_length)) {
+            var msg = item.text;
+            if (typeof msg == 'function') {
+                msg = msg();
+            }
+
+            webform.errors.push({
+                'fieldName': item.rezField,
+                'index': 0,
+                'weight': parseInt(item.err),
+                'msg': concatMessage('67-' + item.err, '', msg)
+            });
+        }
+    }
 
     // Start 26-002
     for (var i = 10; i <= 136; i++) {
         {
-            var col1 = Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C1"]);
-            var col2 = Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C2"]);
-            var col3 = toFloat(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C3"]);
-            var col2DevCol1 = (Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C2"])  / Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C1"])) 
-            if (col2DevCol1 !=  col3 ) {
+
+            if (!isNaN(Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C1"])) && !isNaN(Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C2"]))
+                && !isNaN(Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C3"]))
+                && !isNaN((Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C2"]) / Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C1"])))
+            ){
+           
+ 
+      
+           var col1 = Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C1"]);
+           var col2 = Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C2"]);
+           var col3 = toFloat(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C3"]).toPrecision(3);
+
+         
+          
+           var col2DevCol1 = Math.round((Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C2"]) / Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C1"])) * 100) / 100;
+
+                if (col2DevCol1 != col3  && col1 != 0 && col2 != 0 ) {
                 webform.errors.push({
                     'fieldName': 'CAP1_R' + (i <= 136 ? (+ i) : i) + '_C3',
-                    'weight': 1,
-                    'msg': Drupal.t('Cod eroare: 26-003 Cap.I,  [@col3] <- COL3 = COL2/COL1 -> [@col2DevCol1]  pe  @row', { "@col3": col3,  "@col2DevCol1": col2DevCol1, '@row': i })
+                    'weight': 9,
+                    'msg': Drupal.t('Cod eroare: 26-003 Cap.I,  [@col3] <- COL3 = COL2/COL1 -> [@col2DevCol1]  pe rândul   @row', { "@col3": col3,  "@col2DevCol1": col2DevCol1, '@row': i })
                 });
             }
+            }
         }
+
     }
 
  //End 26-002
 
+
+
+    // Start 26-003
+    for (var i = 10; i <= 136; i++) {
+        {
+
+            if (!isNaN(Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C4"])) && !isNaN(Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C5"]))
+                && !isNaN(Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C6"]))
+                && !isNaN((Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C5"]) / Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C4"])))
+            ) {
+
+
+
+                var col4 = Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C4"]);
+                var col5 = Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C5"]);
+                var col6 = toFloat(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C6"]).toPrecision(3);
+
+
+                var col5DevCol4 = Math.round((Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C5"]) / Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C4"])) * 100) / 100;
+
+                if (col5DevCol4 != col6 && col4 != 0 && col5 != 0) {
+                    webform.errors.push({
+                        'fieldName': 'CAP1_R' + (i <= 136 ? (+ i) : i) + '_C6',
+                        'weight': 10,
+                        'msg': Drupal.t('Cod eroare: 26-003 Cap.I,  [@col6] <- COL6 = COL5/COL4 -> [@col5DevCol4]  pe rândul   @row', { "@col6": col6, "@col5DevCol4": col5DevCol4, '@row': i })
+                    });
+                }
+            }
+        }
+
+    }
+
+ //End 26-003
 
 //--------------------------------------
 
