@@ -57,18 +57,31 @@ webform.validators.vanz21 = function (v, allowOverpass) {
     // Start 26-002
     for (var i = 10; i <= 136; i++) {
         {
-            var col1 = Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C1"]);
-            var col2 = Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C2"]);
-            var col3 = toFloat(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C3"]);
-            var col2DevCol1 = (Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C2"])  / Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C1"])) 
-            if (col2DevCol1 !=  col3 ) {
+
+            if (!isNaN(Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C1"])) && !isNaN(Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C2"]))
+                && !isNaN(Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C3"]))
+                && !isNaN((Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C2"]) / Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C1"])))
+            ){
+           
+ 
+      
+           var col1 = Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C1"]);
+           var col2 = Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C2"]);
+           var col3 = toFloat(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C3"]).toPrecision(3);
+
+         
+           var col2DevCol1 = (Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C2"]) / Number(values["CAP1_R" + (i <= 136 ? (+ i) : i) + "_C1"])).toPrecision(3)
+
+                if (col2DevCol1 != col3  && col1 != 0 && col2 != 0 ) {
                 webform.errors.push({
                     'fieldName': 'CAP1_R' + (i <= 136 ? (+ i) : i) + '_C3',
-                    'weight': 1,
+                    'weight': 9,
                     'msg': Drupal.t('Cod eroare: 26-003 Cap.I,  [@col3] <- COL3 = COL2/COL1 -> [@col2DevCol1]  pe rândul   @row', { "@col3": col3,  "@col2DevCol1": col2DevCol1, '@row': i })
                 });
             }
+            }
         }
+
     }
 
  //End 26-002
