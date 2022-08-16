@@ -99,3 +99,8 @@
 [CAP2_R122_C2]+[CAP2_R121_C2]=[CAP2_R120_C2]msg(Error);
 [CAP2_R122_C4]+[CAP2_R121_C4]=[CAP2_R120_C4]msg(Error);
 [CAP2_R122_C5]+[CAP2_R121_C5]=[CAP2_R120_C5]msg(Error);
+
+
+
+In cap Capitol.I - PRODUSE VEGETALE a 3 si a 6 colona este cu 2 zecimale. 
+Cap.II - Produse Animaliere  a 3 si a 6 colona este cu 2 zecimale. 
