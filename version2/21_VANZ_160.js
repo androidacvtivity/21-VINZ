@@ -54,47 +54,68 @@ webform.validators.vanz21 = function (v, allowOverpass) {
     }
  
     // Start 26-002
-    for (var i = 10; i <= 136; i++) {
-        {
-            if (fun_row_26_024(i)) {
-            if (!isNaN(Number(values["CAP1_R" + i + "_C1"])) 
-                && !isNaN(Number(values["CAP1_R" + i + "_C2"]))
-                && !isNaN(Number(values["CAP1_R" + i + "_C3"]))
-                && !isNaN((Number(values["CAP1_R" + i + "_C2"]) / Number(values["CAP1_R" + i + "_C1"])))
-            ){
-           
- 
-      
-           var col1 = Number(values["CAP1_R" + i + "_C1"]);
-           var col2 = Number(values["CAP1_R" + i + "_C2"]);
-           var col3 = toFloat(values["CAP1_R" + i + "_C3"]).toPrecision(3);
+    // for (var i = 10; i <= 136; i++) {
+    //     {
+    //         if (fun_row_26_024(i)) {
+    //         if (!isNaN(Number(values["CAP1_R" + i + "_C1"])) 
+    //             && !isNaN(Number(values["CAP1_R" + i + "_C2"]))
+    //             && !isNaN(Number(values["CAP1_R" + i + "_C3"]))
+    //             && !isNaN((Number(values["CAP1_R" + i + "_C2"]) / Number(values["CAP1_R" + i + "_C1"])))
+    //         ){
+    //        var col1 = Number(values["CAP1_R" + i + "_C1"]);
+    //        var col2 = Number(values["CAP1_R" + i + "_C2"]);
+    //        var col3 = toFloat(values["CAP1_R" + i + "_C3"]).toPrecision(3);
+         
 
-                function notZero(n) {
-                    n = +n;  // Coerce to number.
-                    if (!n) {  // Matches +0, -0, NaN
-                        throw new Error('Invalid dividend ' + n);
-                    }
-                    return n;
-                }
           
-                if (col1 > 0 && col2 > 0){
+    //             if (col1 > 0 && col2 > 0){
                 
-                var col2DevCol1 = Math.round((col2 / notZero(col1)) * 100) / 100; }
+    //             var col2DevCol1 = Math.round((col2 / col1) * 100) / 100; }
+               
+               
+    //             // actualizeaza valoarea in array-ul asociativ
+    //            // values["CAP1_R" + i + "_C3"] = col2DevCol1;
+
+    //             // actualizeaza celula cu rezultatul calculului
+
+    //             //
+    //               document.querySelector("#CAP1 tr:nth-child(" + (i - 9) + ") td:nth-child(5)").innerHTML = col2DevCol1;
+
+    //             //  document.querySelector("#CAP1_R" + i + "_C3").innerHTML = col2DevCol1;
+
+                
+
+    //             if (col2DevCol1 != col3  && col1 > 0 && col2 > 0 ) {
+    //             webform.errors.push({
+    //                 'fieldName': 'CAP1_R' + i + '_C3',
+    //                 'weight': 9,
+    //                 'msg': Drupal.t('Cod eroare: 26-003 Cap.I, COL3 = COL2/COL1 - @col3 <>  @col2DevCol1 ', { "@col3": col3,  "@col2DevCol1": col2DevCol1 })
+    //             });
+    //         }
+    //         }
+    //     }
+    // }
+    // }
 
 
 
 
-                if (col2DevCol1 != col3  && col1 > 0 && col2 > 0 ) {
-                webform.errors.push({
-                    'fieldName': 'CAP1_R' + i + '_C3',
-                    'weight': 9,
-                    'msg': Drupal.t('Cod eroare: 26-003 Cap.I, COL3 = COL2/COL1 - @col3 <>  @col2DevCol1 ', { "@col3": col3,  "@col2DevCol1": col2DevCol1 })
-                });
-            }
-            }
-        }
-    }
-    }
+
+    if (!isNaN(Number(values["CAP1_R10_C1"])) &&
+        !isNaN(Number(values["CAP1_R10_C2"]))) {
+
+        var col1 = Number(values["CAP1_R10_C1"]);
+        var col2 = Number(values["CAP1_R10_C2"]);
+        var col2DevCol1 = Math.round((col2 / col1) * 100) / 100;
+
+
+
+        // actualizeaza celula cu rezultatul calculului
+        document.querySelector("#CAP1 tr:nth-child(" + (1) + ") td:nth-child(5)").innerHTML = col2DevCol1;
+
+}
+
+
 
  //End 26-002
 
