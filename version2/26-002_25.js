@@ -22,18 +22,7 @@
 webform.validators.vanz21 = function (v, allowOverpass) {
     var values = Drupal.settings.mywebform.values;
     
-   
-
-
-//This is js code
-//Se actualizeaza nu mmai primul rand si gata 
-//I got this error   
-//Uncaught TypeError: Cannot set properties of null(setting 'innerHTML')
- 
-
-
-
-    if (!isNaN(Number(values["CAP1_R10_C1"])) &&
+       if (!isNaN(Number(values["CAP1_R10_C1"])) &&
         !isNaN(Number(values["CAP1_R10_C2"]))) {
 
         var col1 = Number(values["CAP1_R10_C1"]);
@@ -42,13 +31,14 @@ webform.validators.vanz21 = function (v, allowOverpass) {
 
 
 
-            // actualizeaza celula cu rezultatul calculului
-             document.querySelector("#CAP1 tr:nth-child(" + (1) + ") td:nth-child(5)").innerHTML = col2DevCol1;
+    //    // actualizeaza celula cu rezultatul calcululu
+    //     document.querySelector("#CAP1 tr:nth-child(" + (1) + ") td:nth-child(5)").innerHTML = col2DevCol1;
 
-            
 
-          
-        }
+    //  // actualizeaza valoarea in array-ul asociativ
+    //        values["CAP1_R10_C3"] = col2DevCol1;
+
+ }
    
  
 

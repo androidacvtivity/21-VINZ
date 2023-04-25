@@ -101,17 +101,17 @@ webform.validators.vanz21 = function (v, allowOverpass) {
 
 
 
-    if (!isNaN(Number(values["CAP1_R10_C1"])) &&
-        !isNaN(Number(values["CAP1_R10_C2"]))) {
+    // if (!isNaN(Number(values["CAP1_R10_C1"])) &&
+    //     !isNaN(Number(values["CAP1_R10_C2"]))) {
 
-        var col1 = Number(values["CAP1_R10_C1"]);
-        var col2 = Number(values["CAP1_R10_C2"]);
-        var col2DevCol1 = Math.round((col2 / col1) * 100) / 100;
+    //     var col1 = Number(values["CAP1_R10_C1"]);
+    //     var col2 = Number(values["CAP1_R10_C2"]);
+    //     var col2DevCol1 = Math.round((col2 / col1) * 100) / 100;
 
 
 
-        // actualizeaza celula cu rezultatul calculului
-        document.querySelector("#CAP1 tr:nth-child(" + (1) + ") td:nth-child(5)").innerHTML = col2DevCol1;
+    //     // actualizeaza celula cu rezultatul calculului
+    //     document.querySelector("#CAP1 tr:nth-child(" + (1) + ") td:nth-child(5)").innerHTML = col2DevCol1;
 
 }
 
