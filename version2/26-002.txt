@@ -1,0 +1,224 @@
+1.In Drupal I have table with 3 columns and more row. 
+2.This is HTML
+
+<table id="CAP1" border="1" cellspacing="0" cellpadding="0">
+    <tbody>
+        <tr>
+            <td width="40" align="center">
+                <p>10</p>
+            </td>
+            <td width="256">
+                <p><strong>Culturi cereale și leguminoase boabe - total</strong:< /p>
+            </td>
+            <td width="75" align="center">@CAP1_R10_C1;</td>
+            <td width="75" align="center">@CAP1_R10_C2;</td>
+            <td width="75" align="center">@CAP1_R10_C3;</td>
+            <td width="75" align="center">@CAP1_R10_C4;</td>
+            <td width="75" align="center">@CAP1_R10_C5;</td>
+            <td width="84" align="center">@CAP1_R10_C6;</td>
+        </tr>
+
+        <tr>
+            <td width="40" align="center"></td>
+            <td width="256">&nbsp;&nbsp;din care: </td>
+        </tr>
+
+
+
+        <tr>
+            <td width="40" align="center">
+                <p>11</p>
+            </td>
+            <td width="256">
+                <p>Grâu (excluzând seminţe de soi)</p>
+            </td>
+            <td width="75" align="center">@CAP1_R11_C1;</td>
+            <td width="75" align="center">@CAP1_R11_C2;</td>
+            <td width="75" align="center">@CAP1_R11_C3;</td>
+            <td width="75" align="center">@CAP1_R11_C4;</td>
+            <td width="75" align="center">@CAP1_R11_C5;</td>
+            <td width="84" align="center">@CAP1_R11_C6;</td>
+        </tr>
+
+        
+    </tbody>
+</table>
+
+3. Values are entered in CAP1_R10_C1 and CAP1_R10_C2 by the user.
+
+4. In the CAP1_R10_C3 cell, the result of the variable col2DevCol1 must be displayed.
+
+5. And it must be saved in CAP1_R10_C3.
+
+6. This is js code in Drupal that does this. 
+
+ //Start 26-002
+                 if (!isNaN(Number(values["CAP1_R10_C1"]))
+                    && !isNaN(Number(values["CAP1_R10_C2"]))
+                    && !isNaN(Number(values["CAP1_R10_C3"]))
+                    && !isNaN((Number(values["CAP1_R10_C2"]) / Number(values["CAP1_R10_C1"])))
+                ) {
+                    var col1 = Number(values["CAP1_R10_C1"]);
+                    var col2 = Number(values["CAP1_R10_C2"]);
+                     if (col1 > 0 && col2 > 0) {
+
+                       var col2DevCol1 = Math.round((col2 / col1) * 100) / 100;
+                    }
+
+
+            
+                    if (col1 > 0 && col2 > 0) {
+
+
+                    values["CAP1_R10_C3"] = col2DevCol1;
+                    }
+
+            
+
+                    if (col1 > 0 && col2 > 0) {
+
+
+                     document.querySelector("#CAP1 tr:nth-child(" + (1) + ") td:nth-child(5)").innerHTML = col2DevCol1;
+
+                    }
+
+          
+                      var col3 = toFloat(values["CAP1_R10_C3"]).toPrecision(3);
+                       col3 = Number(col3); 
+                    if (col2DevCol1 != col3 && col1 > 0 && col2 > 0) {
+                        webform.errors.push({
+                            'fieldName': 'CAP1_R' + i + '_C3',
+                            'weight': 9,
+                            'msg': Drupal.t('Cod eroare: 26-003 Cap.I, COL3 = COL2/COL1 - @col3 <>  @col2DevCol1 ', { "@col3": col3, "@col2DevCol1": col2DevCol1 })
+                        });
+                    }
+                }
+            
+    //End 26-002
+
+
+
+7.Now, when I apply the save button the first time.
+
+<input id="edit-submit" class="form-submit" type="submit" value="Salvare" name="op">
+
+
+This button have two event - click 
+1. function(a) {
+  return "undefined" == typeof n || a && n.event.triggered === a.type ? void 0 : n.event.dispatch.apply(k.elem, arguments)
+}
+
+2. function(evt) {
+  $('#mywebform-edit-form #clicked-button').val($(this).val());
+  $('#mywebform-edit-form .page-jump').removeClass('error');
+  webform.clicked_button = evt.currentTarget.id;
+
+  mywebform_sync_form_values();
+
+  var period = -1;
+  var period_elem = $('input.period');
+  var confirmed = false;
+  if (!period_elem.length) {
+    period_elem = $('select.period');
+  }
+
+  if (period_elem.length) {
+    period = period_elem.val();
+  }
+
+  var messagesObj = Drupal.settings.mywebform.messages;
+  if (period == -1) {
+    if (typeof messagesObj.confirm != 'undefined' && messagesObj.confirm.length) {
+      confirmed = confirm(Drupal.settings.mywebform.messages.confirm);
+    } else {
+      confirmed = true;
+    }
+  } else {
+    if (typeof messagesObj.confirm_period != 'undefined' && messagesObj.confirm_period.length) {
+      var msg = false;
+      if (typeof webform.confirmMessageCallback === "function") {
+        msg = webform.confirmMessageCallback(messagesObj.confirm_period, period);
+      }
+
+      if (!msg) {
+        msg = Drupal.settings.mywebform.messages.confirm_period;
+        msg = msg.replace('@period', period);
+      }
+
+      confirmed = confirm(msg);
+    } else {
+      confirmed = true;
+    }
+  }
+
+  if (confirmed) {
+    webform.initialize();
+    validateWebform();
+  }
+
+  return false;
+}
+
+
+
+JS work normally 
+
+But I click again save not save value in  CAP1_R10_C3. 
+
+
+But i don't can save data in CAP1_R10_C3 . Must be save data in CAP1_R10_C3 . 
+
+Must be save CAP1_R10_C3 = col2DevCol1  
+
+The result (col2DevCol1) is not saved in  CAP1_R10_C3 !!!  
+
+----------------------------------
+
+
+Give me you  version of js code  for this task 
+
+//Start 26-002
+                 if (!isNaN(Number(values["CAP1_R10_C1"]))
+                    && !isNaN(Number(values["CAP1_R10_C2"]))
+                    && !isNaN(Number(values["CAP1_R10_C3"]))
+                    && !isNaN((Number(values["CAP1_R10_C2"]) / Number(values["CAP1_R10_C1"])))
+                ) {
+                    var col1 = Number(values["CAP1_R10_C1"]);
+                    var col2 = Number(values["CAP1_R10_C2"]);
+                     if (col1 > 0 && col2 > 0) {
+
+                       var col2DevCol1 = Math.round((col2 / col1) * 100) / 100;
+                    }
+
+
+            
+                    if (col1 > 0 && col2 > 0) {
+
+
+                    values["CAP1_R10_C3"] = col2DevCol1;
+                    }
+
+            
+
+                    if (col1 > 0 && col2 > 0) {
+
+
+                     document.querySelector("#CAP1 tr:nth-child(" + (1) + ") td:nth-child(5)").innerHTML = col2DevCol1;
+
+                    }
+
+          
+                      var col3 = toFloat(values["CAP1_R10_C3"]).toPrecision(3);
+                       col3 = Number(col3); 
+                    if (col2DevCol1 != col3 && col1 > 0 && col2 > 0) {
+                        webform.errors.push({
+                            'fieldName': 'CAP1_R' + i + '_C3',
+                            'weight': 9,
+                            'msg': Drupal.t('Cod eroare: 26-003 Cap.I, COL3 = COL2/COL1 - @col3 <>  @col2DevCol1 ', { "@col3": col3, "@col2DevCol1": col2DevCol1 })
+                        });
+                    }
+                }
+            
+    //End 26-002
+
+    var col3 = Number(values["CAP1_R10_C3"]).toFixed(2); 

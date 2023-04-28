@@ -2,15 +2,6 @@ webform.validators.vanz21 = function (v, allowOverpass) {
     var values = Drupal.settings.mywebform.values;
     
    
-
-
-//This is js code
-//Se actualizeaza nu mmai primul rand si gata 
-//I got this error   
-//Uncaught TypeError: Cannot set properties of null(setting 'innerHTML')
- 
-
-
     for (var i = 10; i <= 138; i++) {
         if (!isNaN(Number(values["CAP1_R" + i + "_C1"])) &&
             !isNaN(Number(values["CAP1_R" + i + "_C2"]))) {
