@@ -54,36 +54,30 @@ webform.validators.vanz21 = function (v, allowOverpass) {
     }
 
    
- 
-    //Start 26-002
-    for (var i = 10; i <= 10; i++) {
+  //Start 26-002
+    for (var i = 10; i <= 136; i++) {
         {
             if (fun_row_26_024(i)) {
                 if (!isNaN(Number(values["CAP1_R" + i + "_C1"]))
                     && !isNaN(Number(values["CAP1_R" + i + "_C2"]))
-                    && !isNaN(Number(values["CAP1_R" + i + "_C3"]))
                     && !isNaN((Number(values["CAP1_R" + i + "_C2"]) / Number(values["CAP1_R" + i + "_C1"])))
                 ) {
                     var col1 = Number(values["CAP1_R" + i + "_C1"]);
                     var col2 = Number(values["CAP1_R" + i + "_C2"]);
-                     if (col1 > 0 && col2 > 0) {
+                   
+                    if (col1 > 0 && col2 > 0) {
 
                         var col2DevCol1 = Math.round((col2 / col1) * 100) / 100;
-                    }
+                        col2DevCol1 = parseFloat(col2DevCol1).toFixed(2);
+                    
 
 
-                    // actualizeaza valoarea in array-ul asociativ
-                    values["CAP1_R" + i + "_C3"] = col2DevCol1;
+                document.getElementById("CAP1_R" + i + "_C3").value = col2DevCol1
 
-                    // actualizeaza celula cu rezultatul calculului
+                var col3 = Number(values["CAP1_R" + i + "_C3"]).toFixed(2);
+                  col3 = Number(col3)
 
-                     document.querySelector("#CAP1 tr:nth-child(" + (i - 9) + ") td:nth-child(5)").innerHTML = col2DevCol1;
-
-                //    document.querySelector("#CAP1_R" + i + "_C3").innerHTML = col2DevCol1;
-
-                    var col3 = toFloat(values["CAP1_R" + i + "_C3"]).toPrecision(3);
-
-                    if (col2DevCol1 != col3 && col1 > 0 && col2 > 0) {
+                    if (!col2DevCol1 === col3) {
                         webform.errors.push({
                             'fieldName': 'CAP1_R' + i + '_C3',
                             'weight': 9,
@@ -91,10 +85,34 @@ webform.validators.vanz21 = function (v, allowOverpass) {
                         });
                     }
                 }
+
+
+else 
+                        if (col1 === 0 || col2 === 0) {
+
+                             document.getElementById("CAP1_R" + i + "_C3").value = 0;
+
+                            // var col3 = Number(values["CAP1_R" + i + "_C3"]).toFixed(2);
+                            // col3 = Number(col3)
+
+                            // if (!col2DevCol1 === col3) {
+                            //     webform.errors.push({
+                            //         'fieldName': 'CAP1_R' + i + '_C3',
+                            //         'weight': 9,
+                            //         'msg': Drupal.t('Cod eroare: 26-003 Cap.I, COL3 = COL2/COL1 - @col3 <>  @col2DevCol1 ', { "@col3": col3, "@col2DevCol1": col2DevCol1 })
+                            //     });
+                            // }
+                        } 
+
+
+
+
+
+                }
             }
         }
     }
-    //End 26-002
+ //End 26-002
 
 
 
