@@ -58,21 +58,21 @@ webform.validators.vanz21 = function (v, allowOverpass) {
     for (var i = 10; i <= 136; i++) {
         {
             if (fun_row_26_024(i)) {
-            
                     var col1 = Number(values["CAP1_R" + i + "_C1"]);
                     var col2 = Number(values["CAP1_R" + i + "_C2"]);
-                   
                     if (col1 > 0 && col2 > 0) {
 
                         var col2DevCol1 = Math.round((col2 / col1) * 100) / 100;
+
                         col2DevCol1 = parseFloat(col2DevCol1).toFixed(2);
-                    
 
+                        col2DevCol1 = Number(col2DevCol1);
 
-                document.getElementById("CAP1_R" + i + "_C3").value = col2DevCol1;
+                        document.getElementById("CAP1_R" + i + "_C3").value = col2DevCol1;
 
-                var col3 = Number(values["CAP1_R" + i + "_C3"]).toFixed(2);
-                  col3 = Number(col3)
+                        var col3 = Number(values["CAP1_R" + i + "_C3"]).toFixed(2);
+
+                        col3 = Number(col3);
 
                     if (!col2DevCol1 === col3) {
                         webform.errors.push({
@@ -85,28 +85,22 @@ webform.validators.vanz21 = function (v, allowOverpass) {
 
 
              
-                    if ((col1 > 0 || col2 === 0 ) || (col1 === 0 && col2 === 0))  {
+                    if ((col1 > 0 && col2 === 0 ) || (col1 === 0 && col2 === 0))  {
 
-                           
-
+                         
                             document.getElementById("CAP1_R" + i + "_C3").value = "";
 
-                  
                         } 
 
-                      else 
+                       
                             if (col1 === 0 && col2 > 0) {
-
-                               
-                                var col2DevCol1 = 0;
-                                col2DevCol1 = parseFloat(col2DevCol1).toFixed(2);
-                                document.getElementById("CAP1_R" + i + "_C3").value = col2DevCol1;
+                                var col2DevCol11 = 0;
+                                col2DevCol11 = parseFloat(col2DevCol11).toFixed(2);
+                                document.getElementById("CAP1_R" + i + "_C3").value = col2DevCol11;
 
 
                             } 
-
-
-                    
+                  
             }
         }
     }

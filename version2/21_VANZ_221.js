@@ -85,7 +85,7 @@ webform.validators.vanz21 = function (v, allowOverpass) {
 
 
              
-                    if ((col1 > 0 || col2 === 0 ) || (col1 === 0 && col2 === 0))  {
+                    if ((col1 > 0 && col2 === 0 ) || (col1 === 0 && col2 === 0))  {
 
                            
 
@@ -94,13 +94,13 @@ webform.validators.vanz21 = function (v, allowOverpass) {
                   
                         } 
 
-                      else 
+                       
                             if (col1 === 0 && col2 > 0) {
 
                                
-                                var col2DevCol1 = 0;
-                                col2DevCol1 = parseFloat(col2DevCol1).toFixed(2);
-                                document.getElementById("CAP1_R" + i + "_C3").value = col2DevCol1;
+                                var col2DevCol11 = 0;
+                                col2DevCol11 = parseFloat(col2DevCol11).toFixed(2);
+                                document.getElementById("CAP1_R" + i + "_C3").value = col2DevCol11;
 
 
                             } 

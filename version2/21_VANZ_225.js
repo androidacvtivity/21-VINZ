@@ -55,24 +55,24 @@ webform.validators.vanz21 = function (v, allowOverpass) {
 
    
   //Start 26-002
-    for (var i = 10; i <= 136; i++) {
+    for (var i = 10; i <= 34; i++) {
         {
             if (fun_row_26_024(i)) {
-            
                     var col1 = Number(values["CAP1_R" + i + "_C1"]);
                     var col2 = Number(values["CAP1_R" + i + "_C2"]);
-                   
                     if (col1 > 0 && col2 > 0) {
 
                         var col2DevCol1 = Math.round((col2 / col1) * 100) / 100;
+
                         col2DevCol1 = parseFloat(col2DevCol1).toFixed(2);
-                    
 
+                        col2DevCol1 = Number(col2DevCol1);
 
-                document.getElementById("CAP1_R" + i + "_C3").value = col2DevCol1;
+                        document.getElementById("CAP1_R" + i + "_C3").value = col2DevCol1;
 
-                var col3 = Number(values["CAP1_R" + i + "_C3"]).toFixed(2);
-                  col3 = Number(col3)
+                        var col3 = Number(values["CAP1_R" + i + "_C3"]).toFixed(2);
+
+                        col3 = Number(col3);
 
                     if (!col2DevCol1 === col3) {
                         webform.errors.push({
@@ -81,36 +81,69 @@ webform.validators.vanz21 = function (v, allowOverpass) {
                             'msg': Drupal.t('Cod eroare: 26-003 Cap.I, COL3 = COL2/COL1 - @col3 <>  @col2DevCol1 ', { "@col3": col3, "@col2DevCol1": col2DevCol1 })
                         });
                     }
-                }
+                } 
+                    if ((col1 > 0 && col2 === 0 ) || (col1 === 0 && col2 === 0))  {
+                         document.getElementById("CAP1_R" + i + "_C3").value = "";
+          } 
 
-
-             
-                    if ((col1 > 0 || col2 === 0 ) || (col1 === 0 && col2 === 0))  {
-
-                           
-
-                            document.getElementById("CAP1_R" + i + "_C3").value = "";
-
-                  
-                        } 
-
-                      else 
+                       
                             if (col1 === 0 && col2 > 0) {
-
-                               
-                                var col2DevCol1 = 0;
-                                col2DevCol1 = parseFloat(col2DevCol1).toFixed(2);
-                                document.getElementById("CAP1_R" + i + "_C3").value = col2DevCol1;
-
-
+                                var col2DevCol11 = 0;
+                                col2DevCol11 = parseFloat(col2DevCol11).toFixed(2);
+                                document.getElementById("CAP1_R" + i + "_C3").value = col2DevCol11;
                             } 
-
-
-                    
+                  
             }
         }
     }
  //End 26-002
+
+
+// Start 26-001
+    var sumCol1 = 0;
+
+    for (var i = 11; i <= 26; i++) {
+        if (!isNaN(Number(values["CAP1_R" + i + "_C1"]))) {
+            sumCol1 += Number(values["CAP1_R" + i + "_C1"]);
+        }
+    }
+
+    if (!isNaN(Number(values["CAP1_R" + 10 + "_C1"]))) {
+        var col1 = Number(values["CAP1_R" + 10 + "_C1"]);
+    }
+
+    if (Number(col1) !== Number(sumCol1)) {
+        webform.errors.push({
+            'fieldName': 'CAP1_R10_C1',
+            'weight': 1,
+            'msg': Drupal.t('Cod eroare: 26-001  Cap.I, Rind. 10 = Rind.11 +...+ Rind.26 col1 = @col1, sumCol1 = @sumCol1', { '@col1': col1, '@sumCol1': sumCol1 })
+        });
+    }
+// End  26-001
+
+
+    // Start 26-002
+    var sumCol1 = 0;
+
+    for (var i = 11; i <= 26; i++) {
+        if (!isNaN(Number(values["CAP1_R" + i + "_C2"]))) {
+            sumCol1 += Number(values["CAP1_R" + i + "_C2"]);
+        }
+    }
+
+    if (!isNaN(Number(values["CAP1_R" + 10 + "_C2"]))) {
+        var col1 = Number(values["CAP1_R" + 10 + "_C2"]);
+    }
+
+    if (Number(col1) !== Number(sumCol)) {
+        webform.errors.push({
+            'fieldName': 'CAP1_R10_C2',
+            'weight': 1,
+            'msg': Drupal.t('Cod eroare: 26-002  Cap.I, Rind. 10 = Rind.11 +...+ Rind.26 col2 = @col1, sumCol1 = @sumCol1', { '@col1': col1, '@sumCol1': sumCol1 })
+        });
+    }
+// End  26-002
+
 
 
 
