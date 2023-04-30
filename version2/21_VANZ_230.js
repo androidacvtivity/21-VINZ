@@ -101,6 +101,7 @@ webform.validators.vanz21 = function (v, allowOverpass) {
                             if (col1 === 0 && col2 > 0) {
                                 var col2DevCol11 = 0;
                                 col2DevCol11 = parseFloat(col2DevCol11).toFixed(2);
+                                col2DevCol11 = Number(col2DevCol11);
                                 document.getElementById("CAP1_R" + i + "_C3").value = col2DevCol11;
                             } 
                   
@@ -205,6 +206,7 @@ webform.validators.vanz21 = function (v, allowOverpass) {
                 if (col1 === 0 && col2 > 0) {
                     var col2DevCol11 = 0;
                     col2DevCol11 = parseFloat(col2DevCol11).toFixed(2);
+                    col2DevCol11 = Number(col2DevCol11);
                     document.getElementById("CAP1_R" + i + "_C6").value = col2DevCol11;
                 }
 
