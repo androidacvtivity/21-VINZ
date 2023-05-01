@@ -55,7 +55,7 @@ webform.validators.vanz21 = function (v, allowOverpass) {
 
     //Start Rind 10-33 COL1, COL2, COL3
     //Start 26-002
-    for (var i = 10; i <= 33; i++) {
+    for (var i = 10; i <= 135; i++) {
         {
             if (fun_row_26_024(i)) {
 
@@ -94,11 +94,14 @@ webform.validators.vanz21 = function (v, allowOverpass) {
                     }
                 }
                 if ((col1 > 0 && col2 === 0) || (col1 === 0 && col2 === 0)) {
+                    
+                    values["CAP1_R" + i + "_C3"] = "";
                     document.getElementById("CAP1_R" + i + "_C3").value = "";
                 }
 
 
                 if (col1 === 0 && col2 > 0) {
+                    values["CAP1_R" + i + "_C3"] = "";
                     document.getElementById("CAP1_R" + i + "_C3").value = "";
 
                 }
@@ -158,7 +161,7 @@ webform.validators.vanz21 = function (v, allowOverpass) {
     //Start Rind 10-33 COL4, COL5, COL6
 
     //Start 26-002
-    for (var i = 10; i <= 33; i++) {
+    for (var i = 10; i <= 135; i++) {
         {
             if (fun_row_26_024(i)) {
 
@@ -197,11 +200,15 @@ webform.validators.vanz21 = function (v, allowOverpass) {
                     }
                 }
                 if ((col1 > 0 && col2 === 0) || (col1 === 0 && col2 === 0)) {
+
+                    values["CAP1_R" + i + "_C3"] = "";
                     document.getElementById("CAP1_R" + i + "_C6").value = "";
                 }
 
 
                 if (col1 === 0 && col2 > 0) {
+
+                    values["CAP1_R" + i + "_C3"] = "";
                     document.getElementById("CAP1_R" + i + "_C6").value = "";
                 }
 
