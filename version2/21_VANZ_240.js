@@ -55,7 +55,7 @@ webform.validators.vanz21 = function (v, allowOverpass) {
 
     //Start Rind 10-33 COL1, COL2, COL3
     //Start 26-002
-    for (var i = 10; i <= 135; i++) {
+    for (var i = 10; i <= 136; i++) {
         {
             if (fun_row_26_024(i)) {
 
@@ -161,7 +161,7 @@ webform.validators.vanz21 = function (v, allowOverpass) {
     //Start Rind 10-33 COL4, COL5, COL6
 
     //Start 26-002
-    for (var i = 10; i <= 135; i++) {
+    for (var i = 10; i <= 136; i++) {
         {
             if (fun_row_26_024(i)) {
 
