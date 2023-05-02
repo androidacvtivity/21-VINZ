@@ -1,12 +1,8 @@
-//JS in Drupal 
-// document.getElementById("CAP1_R" + i + "_C3").value  Wrong field format: float number needed
-if (col1 === 0 && col2 > 0) {
-                                var col2DevCol11 = 0;
-                                col2DevCol11 = parseFloat(col2DevCol11).toFixed(2);
-                                col2DevCol11 = Number(col2DevCol11);
-                                document.getElementById("CAP1_R" + i + "_C3").value = col2DevCol11;
-                            }
+Buna ziua. Raportul 21 Vanzari este finisat pentru ereporting.  Eu l-am verificat. Nu sunt erori. 
+Accesati Va rog platforma de test si verificati raportul. 
 
+https://edecbns-test.sfs.md/user/
 
+Utilizator - natalia.siminovici
+Parola - 1234567890
 
-                           
