@@ -1,8 +1,5 @@
-[CAP1_R32_C1]+[CAP1_R33_C1]=[CAP1_R31_C1]msg(Error);
-[CAP1_R32_C2]+[CAP1_R33_C2]=[CAP1_R31_C2]msg(Error);
 
-[CAP1_R32_C4]+[CAP1_R33_C4]=[CAP1_R31_C4]msg(Error);
-[CAP1_R32_C5]+[CAP1_R33_C5]=[CAP1_R31_C5]msg(Error);
+
 
 
 [CAP1_R48_C1]+[CAP1_R47_C1]=[CAP1_R46_C1]msg(Error);
