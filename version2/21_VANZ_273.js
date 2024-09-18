@@ -369,6 +369,11 @@ webform.validators.vanz21 = function (v, allowOverpass) {
     //                 var col2 = Number(values["CAP2_R" + i + "_C5"]);
     //             }
 
+    // DEZVOLTA O VALIDARE DACA 
+    // CAP1_CAEM_C1 NU ESTE EGAL CAP2_CAEM_C1
+    // CAP2_CAEM_C1 = CAP1_CAEM_C1
+
+    document.getElementById("CAP2_CAEM_C1").value = values[`CAP1_CAEM_C1`];
 
     //             if (col1 > 0 && col2 > 0) {
 
