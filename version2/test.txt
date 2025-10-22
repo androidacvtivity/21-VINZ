@@ -8,15 +8,9 @@ Parola - 1234567890
 
 
 
-Modify https://raportare.gov.md/ in link. 
+B100925
+Buna ziua Cristina. 
+Am modificat autosuma si am creat branch-ul pentru 21 Vanzari. 
 
+B100925	214f2792	Commit to B100925 by vitalie.bancu at 2025-10-09 09:10 - B100925 - 21_vinz Autosum correction - Modification of autosum - autofields.txt
 
-
- <p>Acest chestionar poate fi completat on-line pe portalul https://raportare.gov.md/ sau prezentat pe suport de
-                hârtie în
-                adresa organului teritorial pentru statistică  pănă  
-                <strong> la data 5 aprilie </strong>,<strong> 5 iulie </strong>,<strong> 5 octombrie </strong>
-                <strong> 25 ianuarie  după perioada de raportare</strong> de către întreprinderile şi organizaţiile producătoare de produse agricole (inclusiv gospodăriile ţărăneşti (de
-                fermier), care dispun de terenuri agricole de 50 ha şi peste), indiferent de formele organizatorico-juridice şi de
-                proprietate) <strong>după adresa juridică a agentului ecomomic. </strong>
-            </p>
