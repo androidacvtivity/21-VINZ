@@ -1,0 +1,205 @@
+var from = "";
+$(document).ready(function () {
+    form = $("#formDenShort").val();
+    fCAPII();
+});
+
+$(function () {
+    $("input:not([type='button']):not([readonly]):not([disabled])").on("change", function (e) {
+        fCAPII();
+    });
+});
+
+function fCAPII() {
+    // Variabile generate cu ID_MD noi din MD_RIND_368.xlsx.
+    // Sunt păstrate doar coloanele 1, 2 și 3. Calculele pentru coloanele 4, 5 și 6 au fost eliminate.
+    var R111_C1 = $("#26_368_114569_111_1");
+    var R111_C2 = $("#26_368_114569_111_2");
+    var R111_C3 = $("#26_368_114569_111_3");
+
+    var R112_C1 = $("#26_368_114562_112_1");
+    var R112_C2 = $("#26_368_114562_112_2");
+    var R112_C3 = $("#26_368_114562_112_3");
+
+    var R113_C1 = $("#26_368_114567_113_1");
+    var R113_C2 = $("#26_368_114567_113_2");
+    var R113_C3 = $("#26_368_114567_113_3");
+
+    var R114_C1 = $("#26_368_114563_114_1");
+    var R114_C2 = $("#26_368_114563_114_2");
+    var R114_C3 = $("#26_368_114563_114_3");
+
+    var R115_C1 = $("#26_368_114571_115_1");
+    var R115_C2 = $("#26_368_114571_115_2");
+    var R115_C3 = $("#26_368_114571_115_3");
+
+    var R116_C1 = $("#26_368_114566_116_1");
+    var R116_C2 = $("#26_368_114566_116_2");
+    var R116_C3 = $("#26_368_114566_116_3");
+
+    var R117_C1 = $("#26_368_114572_117_1");
+    var R117_C2 = $("#26_368_114572_117_2");
+    var R117_C3 = $("#26_368_114572_117_3");
+
+    var R118_C1 = $("#26_368_114564_118_1");
+    var R118_C2 = $("#26_368_114564_118_2");
+    var R118_C3 = $("#26_368_114564_118_3");
+
+    var R119_C1 = $("#26_368_114573_119_1");
+    var R119_C2 = $("#26_368_114573_119_2");
+    var R119_C3 = $("#26_368_114573_119_3");
+
+    var R120_C1 = $("#26_368_114574_120_1");
+    var R120_C2 = $("#26_368_114574_120_2");
+    var R120_C3 = $("#26_368_114574_120_3");
+
+    var R121_C1 = $("#26_368_114565_121_1");
+    var R121_C2 = $("#26_368_114565_121_2");
+    var R121_C3 = $("#26_368_114565_121_3");
+
+    var R122_C1 = $("#26_368_114570_122_1");
+    var R122_C2 = $("#26_368_114570_122_2");
+    var R122_C3 = $("#26_368_114570_122_3");
+
+    var R123_C1 = $("#26_368_114575_123_1");
+    var R123_C2 = $("#26_368_114575_123_2");
+    var R123_C3 = $("#26_368_114575_123_3");
+
+    var R124_C1 = $("#26_368_114568_124_1");
+    var R124_C2 = $("#26_368_114568_124_2");
+    var R124_C3 = $("#26_368_114568_124_3");
+
+    var R125_C1 = $("#26_368_114560_125_1");
+    var R125_C2 = $("#26_368_114560_125_2");
+    var R125_C3 = $("#26_368_114560_125_3");
+
+    var R137_C1 = $("#26_368_114561_137_1");
+    var R137_C2 = $("#26_368_114561_137_2");
+    var R137_C3 = $("#26_368_114561_137_3");
+
+    function toNumber($el) {
+        var value = $.trim($el.val());
+        if (value === "") {
+            return 0;
+        }
+        return parseFloat(value) || 0;
+    }
+
+    function setSum($target, items) {
+        var total = 0;
+        for (var i = 0; i < items.length; i++) {
+            total += toNumber(items[i]);
+        }
+
+        // La autosumă, dacă rezultatul este 0, nu afișăm 0.
+        // În input folosim valoare goală, adică NULL vizual.
+        if (total === 0) {
+            $target.val("");
+        } else {
+            $target.val(parseInt(total));
+        }
+    }
+
+    function setPrice($qty, $value, $price) {
+        var qtyText = $.trim($qty.val());
+        var valueText = $.trim($value.val());
+        var qtyValue = toNumber($qty);
+        var valueValue = toNumber($value);
+
+        // Dacă este completată col.2, dar col.1 este goală sau 0,
+        // nu calculăm prețul în col.3, ca să nu apară Infinity.
+        if (qtyText === "" || qtyValue === 0 || valueText === "") {
+            $price.val("");
+        } else {
+            $price.val(Math.round(valueValue / qtyValue * Math.pow(10, 2)) / Math.pow(10, 2));
+        }
+
+        if ((qtyText === "" && valueText === "") || (qtyValue === 0 && valueValue === 0)) {
+            $price.val("");
+            $value.val("");
+            $qty.val("");
+        }
+    }
+
+    //-------------- readOnly input ----------------------
+    R111_C1.prop("readonly", true);
+    R111_C2.prop("readonly", true);
+    R111_C3.prop("readonly", true);
+    R112_C3.prop("readonly", true);
+    R113_C3.prop("readonly", true);
+    R114_C3.prop("readonly", true);
+    R115_C3.prop("readonly", true);
+    R116_C3.prop("readonly", true);
+    R117_C1.prop("readonly", true);
+    R117_C2.prop("readonly", true);
+    R117_C3.prop("readonly", true);
+    R118_C3.prop("readonly", true);
+    R119_C3.prop("readonly", true);
+    R120_C1.prop("readonly", true);
+    R120_C2.prop("readonly", true);
+    R120_C3.prop("readonly", true);
+    R121_C3.prop("readonly", true);
+    R122_C3.prop("readonly", true);
+    R123_C3.prop("readonly", true);
+    R124_C3.prop("readonly", true);
+    R125_C3.prop("readonly", true);
+    R137_C3.prop("readonly", true);
+
+    //----------------------------- Animale (în greutate vie) – total ---------------------------
+    //------------------------------- Rind 111 ---------------------------------------------------
+    setSum(R111_C1, [R112_C1, R113_C1, R114_C1, R115_C1, R116_C1]);
+    setSum(R111_C2, [R112_C2, R113_C2, R114_C2, R115_C2, R116_C2]);
+    setPrice(R111_C1, R111_C2, R111_C3);
+
+    //------------------------------- Rind 112 ---------------------------------------------------
+    setPrice(R112_C1, R112_C2, R112_C3);
+
+    //------------------------------- Rind 113 ---------------------------------------------------
+    setPrice(R113_C1, R113_C2, R113_C3);
+
+    //------------------------------- Rind 114 ---------------------------------------------------
+    setPrice(R114_C1, R114_C2, R114_C3);
+
+    //------------------------------- Rind 115 ---------------------------------------------------
+    setPrice(R115_C1, R115_C2, R115_C3);
+
+    //------------------------------- Rind 116 ---------------------------------------------------
+    setPrice(R116_C1, R116_C2, R116_C3);
+
+    //--------- Lapte (în echivalent lapte cu un conţinut de grăsime stabilit) ------------------
+    //------------------------------- Rind 117 ---------------------------------------------------
+    setSum(R117_C1, [R118_C1, R119_C1]);
+    setSum(R117_C2, [R118_C2, R119_C2]);
+    setPrice(R117_C1, R117_C2, R117_C3);
+
+    //------------------------------- Rind 118 ---------------------------------------------------
+    setPrice(R118_C1, R118_C2, R118_C3);
+
+    //------------------------------- Rind 119 ---------------------------------------------------
+    setPrice(R119_C1, R119_C2, R119_C3);
+
+    //-------------------------------- Ouă-total, mii bucăţi ------------------------------------
+    //------------------------------- Rind 120 ---------------------------------------------------
+    setSum(R120_C1, [R121_C1, R122_C1]);
+    setSum(R120_C2, [R121_C2, R122_C2]);
+    setPrice(R120_C1, R120_C2, R120_C3);
+
+    //------------------------------- Rind 121 ---------------------------------------------------
+    setPrice(R121_C1, R121_C2, R121_C3);
+
+    //------------------------------- Rind 122 ---------------------------------------------------
+    setPrice(R122_C1, R122_C2, R122_C3);
+
+    //------------------------------- Rind 123 ---------------------------------------------------
+    setPrice(R123_C1, R123_C2, R123_C3);
+
+    //------------------------------- Rind 124 ---------------------------------------------------
+    setPrice(R124_C1, R124_C2, R124_C3);
+
+    //------------------------------- Rind 125 ---------------------------------------------------
+    setPrice(R125_C1, R125_C2, R125_C3);
+
+    //------------------------------- Rind 137 ---------------------------------------------------
+    setPrice(R137_C1, R137_C2, R137_C3);
+
+}
