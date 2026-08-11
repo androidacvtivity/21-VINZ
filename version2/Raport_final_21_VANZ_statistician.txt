@@ -1,0 +1,44 @@
+Raport privind modificarea formularului 21-VÂNZ în Ghișeul Unic
+
+Raportul 21-VÂNZ „Vânzarea producţiei agricole” a fost actualizat conform versiunii actuale a chestionarului și sarcinii tehnice.
+
+Au fost efectuate următoarele modificări:
+
+- Structura raportului a fost redusă de la 6 la 3 coloane de date:
+  - col.1 – cantitatea;
+  - col.2 – valoarea;
+  - col.3 – prețul.
+- Coloanele vechi 4, 5 și 6 au fost eliminate din formular, configurare și XML.
+- A fost adăugat 1 rând nou – rândul 139 „din care: nuci uscate în coajă” în Capitolul I.
+- Au fost actualizate denumirile și formatarea conform chestionarului actual.
+- A fost actualizată foaia de titlu, inclusiv partea juridică, termenele de prezentare și informațiile de identificare.
+- A fost actualizată și foaia de titlu aferentă raportului din CIS2.
+
+Autocalculări
+
+Coloana 3 se calculează automat după formula:
+
+col.3 = col.2 / col.1
+
+Calculul este aplicat pentru toate rândurile din Capitolele I și II.
+
+Autosumele sunt implementate pe coloanele 1 și 2 pentru următoarele rânduri:
+
+- Cap. I: R.10, R.34, R.50, R.66, R.70, R.86, R.87, R.94, R.99, R.100, R.103;
+- Cap. II: R.111, R.117, R.120.
+
+Validări implementate
+
+- 26-001 – Cap. I: R.10 col.1 = suma R.11–R.26 col.1.
+- 26-002 – Cap. I: R.10 col.2 = suma R.11–R.26 col.2.
+- 26-003 – Cap. I: R.46 ≥ R.47 + R.48, pentru col.1 și col.2.
+- 26-004 – Cap. I: dacă este completată col.1 trebuie completată și col.2 și invers.
+- 26-005 – Cap. I: R.103 ≥ R.136 + R.104 + R.105 + R.106 + R.107 + R.108, pentru col.1 și col.2.
+- 26-022 – Cap. II: dacă este completată col.1 trebuie completată și col.2 și invers.
+- A.09 – numărul de telefon trebuie să conțină exact 9 cifre și să înceapă cu 0.
+
+Structura XML a fost verificată după modificări: sunt păstrate doar coloanele C1–C3, inclusiv rândul 139, fără câmpurile vechi C4–C6.
+
+Concluzie
+
+Raportul 21-VÂNZ a fost actualizat și finalizat în Ghișeul Unic conform structurii actuale a formularului.
