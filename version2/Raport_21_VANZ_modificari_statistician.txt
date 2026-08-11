@@ -1,0 +1,44 @@
+Raport 21-VÂNZ – modificări realizate pentru Ghișeul Unic
+
+Raportul a fost adaptat la structura actuală a chestionarului. În Capitolul I și Capitolul II au fost păstrate doar coloanele 1 – cantitatea, 2 – valoarea și 3 – prețul; coloanele vechi 4–6 au fost eliminate. A fost inclus și rândul 139 – „din care: nuci uscate în coajă”. Denumirile și partea dreaptă a foii de titlu au fost actualizate conform sarcinii tehnice.
+
+Logica actuală a raportului
+
+Coloana 3 reprezintă prețul și se calculează automat după formula:
+
+Col.3 = Col.2 / Col.1
+
+Calculul se aplică pentru toate rândurile din Capitolul I și Capitolul II. Dacă valoarea din col.1 este 0, nu se efectuează împărțirea.
+
+Autosume implementate
+
+În Capitolul I:
+- R.10 = suma R.11–R.26
+- R.34 = suma R.35–R.40
+- R.50 = suma R.51–R.65
+- R.66 = R.67 + R.68 + R.69
+- R.70 = R.71 + R.72
+- R.86 = R.87 + R.94 + R.99
+- R.87 = suma R.88–R.93
+- R.94 = suma R.95–R.98
+- R.99 = R.132 + R.133 + R.134
+- R.100 = R.101 + R.102
+- R.103 = R.136 + R.104 + R.105 + R.106 + R.107 + R.108
+
+În Capitolul II:
+- R.111 = suma R.112–R.116
+- R.117 = R.118 + R.119
+- R.120 = R.121 + R.122
+
+Autosumele se aplică pe coloanele 1 și 2.
+
+Validări implementate
+
+- 26-001 – Cap. I: R.10 col.1 trebuie să fie egal cu suma R.11–R.26 col.1.
+- 26-002 – Cap. I: R.10 col.2 trebuie să fie egal cu suma R.11–R.26 col.2.
+- 26-003 – Cap. I: R.46 trebuie să fie mai mare sau egal cu suma R.47 + R.48, pe coloanele 1 și 2.
+- 26-004 – Cap. I: dacă este completată col.1, trebuie să fie completată și col.2 și invers, pentru fiecare rând.
+- 26-022 – aceeași regulă pentru Capitolul II: col.1 și col.2 trebuie completate împreună.
+- A.09 – numărul de telefon trebuie să conțină exact 9 cifre și să înceapă cu 0.
+
+Pe scurt, raportul a fost adus la 3 coloane de date, cu preț calculat automat, autosume pentru rândurile total și validări adaptate noii structuri.
