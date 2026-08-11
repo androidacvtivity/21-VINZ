@@ -1,15 +1,3 @@
-
-
-
-
-[CAP1_R48_C1]+[CAP1_R47_C1]=[CAP1_R46_C1]msg(Error);
-[CAP1_R48_C2]+[CAP1_R47_C2]=[CAP1_R46_C2]msg(Error);
-
-[CAP1_R48_C4]+[CAP1_R47_C4]=[CAP1_R46_C4]msg(Error);
-[CAP1_R48_C5]+[CAP1_R47_C5]=[CAP1_R46_C5]msg(Error);
-
-
-
 [CAP1_R10_C1] == 0  ? 0 : [CAP1_R10_C2]/[CAP1_R10_C1] = [CAP1_R10_C3]msg(Error);
 [CAP1_R10_C4] == 0  ? 0 : [CAP1_R10_C5]/[CAP1_R10_C4] = [CAP1_R10_C6]msg(Error);
 
@@ -106,9 +94,6 @@
 
 [CAP1_R40_C1] == 0  ? 0 : [CAP1_R40_C2]/[CAP1_R40_C1] = [CAP1_R40_C3]msg(Error);
 [CAP1_R40_C4] == 0  ? 0 : [CAP1_R40_C5]/[CAP1_R40_C4] = [CAP1_R40_C6]msg(Error);
-
-[CAP1_R41_C1] == 0  ? 0 : [CAP1_R41_C2]/[CAP1_R41_C1] = [CAP1_R41_C3]msg(Error);
-[CAP1_R41_C4] == 0  ? 0 : [CAP1_R41_C5]/[CAP1_R41_C4] = [CAP1_R41_C6]msg(Error);
 
 [CAP1_R41_C1] == 0  ? 0 : [CAP1_R41_C2]/[CAP1_R41_C1] = [CAP1_R41_C3]msg(Error);
 [CAP1_R41_C4] == 0  ? 0 : [CAP1_R41_C5]/[CAP1_R41_C4] = [CAP1_R41_C6]msg(Error);
@@ -280,7 +265,7 @@
 [CAP1_R91_C4] == 0  ? 0 : [CAP1_R91_C5]/[CAP1_R91_C4] = [CAP1_R91_C6]msg(Error);
 
 [CAP1_R92_C1] == 0  ? 0 : [CAP1_R92_C2]/[CAP1_R92_C1] = [CAP1_R92_C3]msg(Error);
-[CAP1_R92_C4] == 0  ? 0 : [CAP1_R92_C5]/[CAP1_R91_C4] = [CAP1_R92_C6]msg(Error);
+[CAP1_R92_C4] == 0  ? 0 : [CAP1_R92_C5]/[CAP1_R92_C4] = [CAP1_R92_C6]msg(Error);
 
 [CAP1_R93_C1] == 0  ? 0 : [CAP1_R93_C2]/[CAP1_R93_C1] = [CAP1_R93_C3]msg(Error);
 [CAP1_R93_C4] == 0  ? 0 : [CAP1_R93_C5]/[CAP1_R93_C4] = [CAP1_R93_C6]msg(Error);
@@ -300,10 +285,6 @@
 [CAP1_R98_C1] == 0  ? 0 : [CAP1_R98_C2]/[CAP1_R98_C1] = [CAP1_R98_C3]msg(Error);
 [CAP1_R98_C4] == 0  ? 0 : [CAP1_R98_C5]/[CAP1_R98_C4] = [CAP1_R98_C6]msg(Error);
 
-[CAP1_R98_C1] == 0  ? 0 : [CAP1_R98_C2]/[CAP1_R98_C1] = [CAP1_R98_C3]msg(Error);
-[CAP1_R98_C4] == 0  ? 0 : [CAP1_R98_C5]/[CAP1_R98_C4] = [CAP1_R98_C6]msg(Error);
-
-
 [CAP1_R99_C1] == 0  ? 0 : [CAP1_R99_C2]/[CAP1_R99_C1] = [CAP1_R99_C3]msg(Error);
 [CAP1_R99_C4] == 0  ? 0 : [CAP1_R99_C5]/[CAP1_R99_C4] = [CAP1_R99_C6]msg(Error);
 
@@ -320,6 +301,7 @@
 [CAP1_R134_C1] == 0  ? 0 : [CAP1_R134_C2]/[CAP1_R134_C1] = [CAP1_R134_C3]msg(Error);
 [CAP1_R134_C4] == 0  ? 0 : [CAP1_R134_C5]/[CAP1_R134_C4] = [CAP1_R134_C6]msg(Error);
 
+[CAP1_R139_C1] == 0  ? 0 : [CAP1_R139_C2]/[CAP1_R139_C1] = [CAP1_R139_C3]msg(Error);
 
 [CAP1_R135_C1] == 0  ? 0 : [CAP1_R135_C2]/[CAP1_R135_C1] = [CAP1_R135_C3]msg(Error);
 [CAP1_R135_C4] == 0  ? 0 : [CAP1_R135_C5]/[CAP1_R135_C4] = [CAP1_R135_C6]msg(Error);
@@ -460,6 +442,8 @@
 
 [CAP2_R137_C1] == 0  ? 0 : [CAP2_R137_C2]/[CAP2_R137_C1] = [CAP2_R137_C3]msg(Error);
 [CAP2_R137_C4] == 0  ? 0 : [CAP2_R137_C5]/[CAP2_R137_C4] = [CAP2_R137_C6]msg(Error);
+
+
 
 [CAP1_R11_C1]+[CAP1_R12_C1]+[CAP1_R13_C1]+[CAP1_R14_C1]+[CAP1_R15_C1]+[CAP1_R16_C1]+[CAP1_R17_C1]+
 [CAP1_R18_C1]+[CAP1_R19_C1]+[CAP1_R20_C1]+[CAP1_R21_C1]+[CAP1_R22_C1]+[CAP1_R23_C1]+[CAP1_R24_C1]+
